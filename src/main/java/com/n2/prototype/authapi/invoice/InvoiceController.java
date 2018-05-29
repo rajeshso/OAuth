@@ -1,5 +1,6 @@
 package com.n2.prototype.authapi.invoice;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/invoices")
+@RequestMapping("/invoices/")
 public class InvoiceController {
 
 	private InvoiceRepository invoiceRepository;
@@ -23,11 +24,13 @@ public class InvoiceController {
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('add:invoice')")
 	public void addInvoice(@RequestBody Invoice invoice) {
 		invoiceRepository.save(invoice);
 	}
 
 	@GetMapping
+	@PreAuthorize("hasAuthority('read:invoice')")
 	public List<Invoice> getInvoices() {
 		return invoiceRepository.findAll();
 	}
@@ -41,6 +44,7 @@ public class InvoiceController {
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('all')")
 	public void deleteInvoice(@PathVariable long id) {
 		invoiceRepository.delete(id);
 	}

@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 
 import static com.n2.prototype.authapi.security.SecurityConstants.SIGN_UP_URL;
 
+/*
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
@@ -48,4 +49,4 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
-}
+}*/
